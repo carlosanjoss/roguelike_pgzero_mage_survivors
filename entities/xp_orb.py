@@ -11,7 +11,7 @@ class XPOrb:
         self.speed = 0
         self.alive = True
 
-    # ================= UPDATE =================
+
 
     def update(self, dt):
         dx = self.game.player.x - self.x
@@ -19,7 +19,7 @@ class XPOrb:
 
         distance = math.hypot(dx, dy)
 
-        # Magnetismo
+
         if distance < 150:
             self.speed = 250
         else:
@@ -32,12 +32,11 @@ class XPOrb:
         self.x += dx * self.speed * dt
         self.y += dy * self.speed * dt
 
-        # Coleta
+
         if distance < 20:
             self.game.player.gain_xp(self.value)
             self.alive = False
 
-    # ================= DRAW =================
 
     def draw(self, screen):
         camera_x, camera_y = self.game.get_camera()

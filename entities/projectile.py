@@ -1,4 +1,5 @@
 import math
+import random
 from pgzero.builtins import sounds
 from entities.xp_orb import XPOrb
 from entities.particle import Particle
@@ -46,7 +47,7 @@ class Projectile:
         self.vx = dx
         self.vy = dy
 
-    # ================= UPDATE =================
+
 
     def update(self, dt):
         self.timer += dt
@@ -62,12 +63,11 @@ class Projectile:
         else:
             self.check_enemy_collision()
 
-        # segurança para mundo infinito
         if math.hypot(self.x - self.game.player.x,
                       self.y - self.game.player.y) > 2000:
             self.alive = False
 
-    # ================= COLLISION ENEMY =================
+
 
     def check_enemy_collision(self):
         for enemy in self.game.enemies:
@@ -82,14 +82,14 @@ class Projectile:
                 self.hit_enemies.add(enemy)
 
                 if enemy.hp <= 0:
-                    enemy.on_death()        # 🔥 AGORA DROP É RESPONSABILIDADE DO ENEMY
+                    enemy.on_death()
                     self.handle_enemy_death(enemy)
 
                 if not self.piercing:
                     self.alive = False
                     return
 
-    # ================= COLLISION PLAYER =================
+
 
     def check_player_collision(self):
         player = self.game.player
@@ -100,7 +100,7 @@ class Projectile:
             player.hp -= self.damage
             self.alive = False
 
-    # ================= ENEMY DEATH =================
+
 
     def handle_enemy_death(self, enemy):
         try:
@@ -108,7 +108,7 @@ class Projectile:
         except:
             pass
 
-        # XP drop
+        # XP padrão
         orb = XPOrb(self.game, enemy.x, enemy.y, 5)
         self.game.xp_orbs.append(orb)
 
@@ -118,7 +118,26 @@ class Projectile:
                 Particle(self.game, enemy.x, enemy.y)
             )
 
-    # ================= DRAW =================
+
+
+        roll = random.random()
+
+        # 5% vida
+        if roll < 0.05:
+            from entities.health_pickup import HealthPickup
+            self.game.health_pickups.append(
+                HealthPickup(self.game, enemy.x, enemy.y)
+            )
+
+        # 3% arma
+        elif roll < 0.08:
+            enemy.drop_random_weapon()
+
+        # 1% level up instantâneo
+        elif roll < 0.09:
+            self.game.level_up()
+
+
 
     def draw(self, screen):
         camera_x, camera_y = self.game.get_camera()

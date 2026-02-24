@@ -8,7 +8,7 @@ class Spawner:
         self.spawn_timer = 0
         self.last_boss_minute = -1
 
-    # ================= UPDATE =================
+
 
     def update(self, dt):
         self.spawn_timer += dt
@@ -24,7 +24,7 @@ class Spawner:
 
         self.check_boss_spawn()
 
-    # ================= NORMAL SPAWN =================
+
 
     def spawn_enemy(self):
     
@@ -44,7 +44,7 @@ class Spawner:
             Enemy(self.game, "boss")
         )
 
-    # ================= BOSS SPAWN =================
+
 
     def check_boss_spawn(self):
         current_minute = int(self.game.time_survived // 60)

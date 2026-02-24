@@ -23,7 +23,7 @@ class Game:
 
         self.reset_game()
 
-    # ================= RESET =================
+
 
     def reset_entities(self):
         self.player = Player(self, 0, 0)
@@ -47,7 +47,7 @@ class Game:
         self.level_choices = []
         self.state = "menu"
 
-    # ================= UPDATE =================
+
 
     def update(self, dt):
 
@@ -66,7 +66,7 @@ class Game:
             self.world.update()
             self.spawner.update(dt)
 
-            # VIDA ALEATÓRIA
+
             self.health_spawn_timer += dt
 
             if self.health_spawn_timer >= self.health_spawn_rate:
@@ -78,22 +78,22 @@ class Game:
 
             self.health_pickups = [i for i in self.health_pickups if i.alive]
 
-            # ENEMIES
+
             for enemy in self.enemies:
                 enemy.update(dt)
             self.enemies = [e for e in self.enemies if e.hp > 0]
 
-            # PROJECTILES
+
             for projectile in self.projectiles:
                 projectile.update(dt)
             self.projectiles = [p for p in self.projectiles if p.alive]
 
-            # XP
+
             for orb in self.xp_orbs:
                 orb.update(dt)
             self.xp_orbs = [o for o in self.xp_orbs if o.alive]
 
-            # PARTICLES
+
             for particle in self.particles:
                 particle.update(dt)
             self.particles = [p for p in self.particles if p.alive]
@@ -101,7 +101,7 @@ class Game:
             if self.player.hp <= 0:
                 self.state = "game_over"
 
-    # ================= SPAWN HEALTH =================
+
 
     def spawn_health_pickup(self):
         distance = random.randint(400, 900)
@@ -114,7 +114,7 @@ class Game:
             HealthPickup(self, x, y)
         )
 
-    # ================= DRAW =================
+
 
     def draw(self, screen):
         screen.clear()
@@ -146,7 +146,7 @@ class Game:
         if self.state == "game_over":
             self.draw_game_over(screen)
 
-    # ================= DRAW PLAYING =================
+
 
     def draw_playing(self, screen):
 
@@ -173,7 +173,7 @@ class Game:
 
         self.draw_ui(screen)
 
-    # ================= UI =================
+
 
     def draw_ui(self, screen):
 
@@ -198,7 +198,7 @@ class Game:
         music_status = "ON" if self.music_enabled else "OFF"
         screen.draw.text(f"Music: {music_status}", (20, 135), fontsize=20, color="white")
 
-    # ================= GAME OVER =================
+
 
     def draw_game_over(self, screen):
         screen.draw.text(
@@ -222,7 +222,7 @@ class Game:
             color="white"
         )
 
-    # ================= LEVEL UP =================
+
 
     def level_up(self):
         self.state = "level_up"
@@ -281,7 +281,7 @@ class Game:
                 color="white"
             )
 
-    # ================= INPUT =================
+
 
     def on_mouse_down(self, pos):
 
@@ -318,7 +318,7 @@ class Game:
         if key.name == "M":
             self.toggle_music()
 
-    # ================= AUDIO =================
+
 
     def toggle_music(self):
         self.music_enabled = not self.music_enabled
@@ -331,7 +331,7 @@ class Game:
         else:
             music.stop()
 
-    # ================= CAMERA =================
+
 
     def get_camera(self):
         return (

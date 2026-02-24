@@ -18,7 +18,7 @@ class Particle:
         self.life = 0.5
         self.alive = True
 
-    # ================= UPDATE =================
+
 
     def update(self, dt):
         self.life -= dt
@@ -30,7 +30,7 @@ class Particle:
         self.x += self.vx * dt
         self.y += self.vy * dt
 
-    # ================= DRAW =================
+
 
     def draw(self, screen):
         camera_x, camera_y = self.game.get_camera()

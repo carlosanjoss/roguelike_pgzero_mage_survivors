@@ -9,36 +9,36 @@ class Player:
     def __init__(self, game, x, y):
         self.game = game
 
-        # Posição no mundo
+
         self.x = x
         self.y = y
 
-        # Tamanho do sprite
+
         self.sprite_width = 64
         self.sprite_height = 64
 
-        # Movimento
+
         self.speed = 220
         self.velocity_x = 0
         self.velocity_y = 0
 
-        # Vida
+
         self.max_hp = 100
         self.hp = 100
 
-        # XP
+
         self.level = 1
         self.xp = 0
         self.xp_to_next = 10
 
-        # Dano base
+
         self.damage = 25
 
-        # Sistema de armas
+
         self.weapons = []
         self.add_start_weapon()
 
-        # Animação
+
         self.animation_timer = 0
         self.animation_speed = 0.15
         self.frame_index = 0
@@ -56,13 +56,13 @@ class Player:
             "player/player_walk_3",
         ]
 
-    # ================= START WEAPON =================
+
 
     def add_start_weapon(self):
         weapon = SpreadWeapon(self.game, self)
         self.weapons.append(weapon)
 
-    # ================= UPDATE =================
+
 
     def update(self, dt, keyboard):
         self.handle_input(keyboard)
@@ -72,7 +72,7 @@ class Player:
         for weapon in self.weapons:
             weapon.update(dt)
 
-    # ================= INPUT =================
+
 
     def handle_input(self, keyboard):
         self.velocity_x = 0
@@ -92,7 +92,7 @@ class Player:
         else:
             self.state = "idle"
 
-    # ================= MOVEMENT =================
+
 
     def move(self, dt):
         length = math.hypot(self.velocity_x, self.velocity_y)
@@ -124,7 +124,7 @@ class Player:
             self.x = next_x
             self.y = next_y
 
-    # ================= ANIMATION =================
+
 
     def animate(self, dt):
         frames = self.get_current_frames()
@@ -143,7 +143,7 @@ class Player:
             return self.walk_frames
         return self.idle_frames
 
-    # ================= DRAW =================
+
 
     def draw(self, screen):
         frames = self.get_current_frames()
@@ -166,7 +166,7 @@ class Player:
 
         self.draw_hp_bar(screen)
 
-    # ================= HP BAR =================
+
 
     def draw_hp_bar(self, screen):
         bar_width = 50
@@ -193,7 +193,7 @@ class Player:
             (0, 200, 0)
         )
 
-    # ================= XP SYSTEM =================
+
 
     def gain_xp(self, amount):
         self.xp += amount

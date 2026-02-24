@@ -5,17 +5,17 @@ class Obstacle:
     def __init__(self, game, x, y, sprite):
         self.game = game
 
-        # CENTRO REAL
+
         self.x = x
         self.y = y
 
         self.sprite = sprite
 
-        # TAMANHO REAL DA ROCK
+
         self.sprite_width = 31
         self.sprite_height = 41
 
-        # HITBOX CENTRALIZADA
+
         self.rect = Rect(
             int(self.x - self.sprite_width // 2),
             int(self.y - self.sprite_height // 2),

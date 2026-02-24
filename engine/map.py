@@ -8,11 +8,11 @@ class GameMap:
 
         camera_x, camera_y = self.game.get_camera()
 
-        # Quantos tiles precisamos cobrir a tela inteira
+
         cols = self.game.width // tile + 3
         rows = self.game.height // tile + 3
 
-        # Tile inicial baseado na câmera
+
         start_col = int(camera_x // tile) - 1
         start_row = int(camera_y // tile) - 1
 

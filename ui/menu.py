@@ -28,11 +28,11 @@ class MainMenu:
     def __init__(self, game):
         self.game = game
 
-        self.background_image = "menu_background"  # coloque a imagem na pasta images
+        self.background_image = "menu_background"  
 
         self.create_buttons()
 
-    # ================= BUTTON SETUP =================
+
 
     def create_buttons(self):
         center_x = self.game.width // 2
@@ -64,23 +64,23 @@ class MainMenu:
             self.exit_button
         ]
 
-    # ================= UPDATE =================
+
 
     def update(self, dt):
         pass
 
-    # ================= DRAW =================
+
 
     def draw(self, screen):
         screen.clear()
 
-        # Fundo
+
         try:
             screen.blit(self.background_image, (0, 0))
         except:
-            screen.fill((15, 15, 20))  # fallback se não tiver imagem
+            screen.fill((15, 15, 20))  
 
-        # Título
+
         screen.draw.text(
             "MAGE ROGUELIKE",
             center=(self.game.width // 2, 120),
@@ -91,13 +91,13 @@ class MainMenu:
         for button in self.buttons:
             button.draw(screen)
 
-    # ================= INPUT =================
+
 
     def on_mouse_down(self, pos):
         for button in self.buttons:
             button.check_click(pos)
 
-    # ================= ACTIONS =================
+
 
     def start_game(self):
         self.game.reset_entities()
@@ -115,7 +115,7 @@ class MainMenu:
         else:
             music.stop()
 
-        # Atualiza texto do botão
+
         self.music_button.text = self.get_music_text()
 
     def get_music_text(self):

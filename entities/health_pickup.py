@@ -8,14 +8,14 @@ class HealthPickup:
         self.x = x
         self.y = y
 
-        # Caminho relativo à pasta images/
+
         self.sprite = "items/health"
         self.size = 48
 
         self.heal_amount = 30
         self.alive = True
 
-    # ================= UPDATE =================
+
 
     def update(self, dt):
         player = self.game.player
@@ -30,7 +30,7 @@ class HealthPickup:
 
             self.alive = False
 
-    # ================= DRAW =================
+
 
     def draw(self, screen):
         camera_x, camera_y = self.game.get_camera()

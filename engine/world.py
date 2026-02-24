@@ -11,12 +11,12 @@ class World:
         self.chunk_size = 600
         self.generated_chunks = set()
 
-    # ================= UPDATE =================
+
 
     def update(self):
         self.generate_chunks()
 
-    # ================= CHUNK GENERATION =================
+
 
     def generate_chunks(self):
         px = int(self.game.player.x // self.chunk_size)
@@ -32,19 +32,19 @@ class World:
         base_x = chunk_x * self.chunk_size
         base_y = chunk_y * self.chunk_size
 
-        # ===== DENSIDADE ORGÂNICA =====
 
-        # Seed baseada na posição do chunk
+
+
         random.seed(chunk_x * 928371 + chunk_y * 123123)
 
         density_value = random.random()
 
         if density_value < 0.3:
-            obstacle_count = random.randint(2, 5)      # região vazia
+            obstacle_count = random.randint(2, 5)      
         elif density_value < 0.7:
-            obstacle_count = random.randint(6, 12)     # região normal
+            obstacle_count = random.randint(6, 12)     
         else:
-            obstacle_count = random.randint(15, 25)    # região densa
+            obstacle_count = random.randint(15, 25)    
 
         for _ in range(obstacle_count):
 
@@ -61,17 +61,17 @@ class World:
                 obstacle = Obstacle(self.game, x, y, sprite)
                 self.obstacles.append(obstacle)
 
-        random.seed()  # reset seed
+        random.seed()  
 
-    # ================= SPAWN VALIDATION =================
+
 
     def is_valid_spawn(self, x, y):
-        # Evitar nascer muito perto do player
+ 
         if math.hypot(x - self.game.player.x,
                       y - self.game.player.y) < 150:
             return False
 
-        # Evitar sobreposição excessiva
+
         for obstacle in self.obstacles:
             if math.hypot(x - obstacle.x,
                           y - obstacle.y) < 50:
@@ -79,7 +79,7 @@ class World:
 
         return True 
 
-    # ================= DRAW =================
+
 
     def draw(self, screen):
         for obstacle in self.obstacles:
