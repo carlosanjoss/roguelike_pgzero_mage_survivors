@@ -28,5 +28,5 @@ A procedurally generated top-down roguelike built with **Python + Pygame Zero (P
 ## 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/mage-roguelike.git
+git clone https://github.com/carlosanjoss/roguelike_pgzero_mage_survivors.git
 cd mage-roguelike
